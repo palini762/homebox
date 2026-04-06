@@ -182,6 +182,24 @@ export function makeColumns({
       },
     },
     {
+      id: "expiryDate",
+      accessorKey: "expiryDate",
+      header: ({ column }) =>
+        h(
+          Button,
+          {
+            variant: "ghost",
+            onClick: () => !disableSort && column.toggleSorting(column.getIsSorted() === "asc"),
+          },
+          () => sortable(column, "items.expiry_date")
+        ),
+      cell: ({ row }) => {
+        const val = row.getValue("expiryDate");
+        if (!val) return h("div", { class: "text-center text-sm text-muted-foreground" }, "–");
+        return h("div", { class: "text-center text-sm" }, h(DateTime, { date: val as Date, datetimeType: "date" }));
+      },
+    },
+    {
       id: "createdAt",
       accessorKey: "createdAt",
       header: ({ column }) =>

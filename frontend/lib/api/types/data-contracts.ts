@@ -715,6 +715,8 @@ export interface ItemSummary {
   assetId: string;
   createdAt: Date | string;
   description: string;
+  /** Expiry Date (MHD) */
+  expiryDate?: Date | string | null;
   id: string;
   imageId?: string | null;
   insured: boolean;

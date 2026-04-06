@@ -226,6 +226,12 @@
         slot: "quantity",
       },
       {
+        name: "items.expiry_date",
+        text: item.value?.expiryDate || "",
+        type: "date",
+        date: true,
+      },
+      {
         name: "items.serial_number",
         text: item.value?.serialNumber,
         copyable: true,

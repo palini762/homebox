@@ -157,6 +157,9 @@ type (
 		ImageID     *uuid.UUID `json:"imageId,omitempty"     extensions:"x-nullable,x-omitempty"`
 		ThumbnailId *uuid.UUID `json:"thumbnailId,omitempty" extensions:"x-nullable,x-omitempty"`
 
+		// Expiry Date (MHD)
+		ExpiryDate types.Date `json:"expiryDate"`
+
 		// Sale details
 		SoldTime time.Time `json:"soldTime"`
 	}
@@ -241,6 +244,9 @@ func mapItemSummary(item *ent.Item) ItemSummary {
 		Insured:     item.Insured,
 		ImageID:     imageID,
 		ThumbnailId: thumbnailID,
+
+		// Expiry Date (MHD)
+		ExpiryDate: types.DateFromTime(item.ExpiryDate),
 	}
 }
 
