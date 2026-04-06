@@ -158,6 +158,15 @@
         :label="$t('components.item.create_modal.item_description')"
         :max-length="1000"
       />
+      <div class="flex w-full flex-col gap-1.5">
+        <Label for="item-expiry-date">{{ $t('components.item.create_modal.item_expiry_date') }}</Label>
+        <Input
+          id="item-expiry-date"
+          v-model="form.expiryDate"
+          type="date"
+          class="w-full"
+        />
+      </div>
       <TagSelector v-model="form.tags" :tags="tags ?? []" />
       <div class="flex w-full flex-col gap-1.5">
         <Label for="image-create-photo" class="flex w-full px-1">
@@ -366,6 +375,7 @@
     name: "",
     quantity: 1,
     description: "",
+    expiryDate: "",
     color: "",
     tags: [] as string[],
     photos: [] as PhotoPreview[],
@@ -607,6 +617,7 @@
         name: form.name,
         quantity: form.quantity,
         description: form.description,
+        expiryDate: form.expiryDate || null,
         locationId: form.location.id as string,
         tagIds: form.tags,
       };
@@ -652,6 +663,7 @@
     form.name = "";
     form.quantity = 1;
     form.description = "";
+    form.expiryDate = "";
     form.color = "";
     form.photos = [];
     form.tags = [];

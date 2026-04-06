@@ -86,6 +86,11 @@ func (Item) Fields() []ent.Field {
 			Default(0),
 
 		// ------------------------------------
+		// Expiry Date (MHD - Mindesthaltbarkeitsdatum)
+		field.Time("expiry_date").
+			Optional(),
+
+		// ------------------------------------
 		// Sold Details
 		field.Time("sold_time").
 			Optional(),

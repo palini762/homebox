@@ -299,6 +299,20 @@ func (_c *ItemCreate) SetNillablePurchasePrice(v *float64) *ItemCreate {
 	return _c
 }
 
+// SetExpiryDate sets the "expiry_date" field.
+func (_c *ItemCreate) SetExpiryDate(v time.Time) *ItemCreate {
+	_c.mutation.SetExpiryDate(v)
+	return _c
+}
+
+// SetNillableExpiryDate sets the "expiry_date" field if the given value is not nil.
+func (_c *ItemCreate) SetNillableExpiryDate(v *time.Time) *ItemCreate {
+	if v != nil {
+		_c.SetExpiryDate(*v)
+	}
+	return _c
+}
+
 // SetSoldTime sets the "sold_time" field.
 func (_c *ItemCreate) SetSoldTime(v time.Time) *ItemCreate {
 	_c.mutation.SetSoldTime(v)
@@ -771,6 +785,10 @@ func (_c *ItemCreate) createSpec() (*Item, *sqlgraph.CreateSpec) {
 	if value, ok := _c.mutation.PurchasePrice(); ok {
 		_spec.SetField(item.FieldPurchasePrice, field.TypeFloat64, value)
 		_node.PurchasePrice = value
+	}
+	if value, ok := _c.mutation.ExpiryDate(); ok {
+		_spec.SetField(item.FieldExpiryDate, field.TypeTime, value)
+		_node.ExpiryDate = value
 	}
 	if value, ok := _c.mutation.SoldTime(); ok {
 		_spec.SetField(item.FieldSoldTime, field.TypeTime, value)

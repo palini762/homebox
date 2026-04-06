@@ -55,6 +55,8 @@ const (
 	FieldPurchaseFrom = "purchase_from"
 	// FieldPurchasePrice holds the string denoting the purchase_price field in the database.
 	FieldPurchasePrice = "purchase_price"
+	// FieldExpiryDate holds the string denoting the expiry_date field in the database.
+	FieldExpiryDate = "expiry_date"
 	// FieldSoldTime holds the string denoting the sold_time field in the database.
 	FieldSoldTime = "sold_time"
 	// FieldSoldTo holds the string denoting the sold_to field in the database.
@@ -154,6 +156,7 @@ var Columns = []string{
 	FieldPurchaseTime,
 	FieldPurchaseFrom,
 	FieldPurchasePrice,
+	FieldExpiryDate,
 	FieldSoldTime,
 	FieldSoldTo,
 	FieldSoldPrice,
@@ -340,6 +343,11 @@ func ByPurchaseFrom(opts ...sql.OrderTermOption) OrderOption {
 // ByPurchasePrice orders the results by the purchase_price field.
 func ByPurchasePrice(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldPurchasePrice, opts...).ToFunc()
+}
+
+// ByExpiryDate orders the results by the expiry_date field.
+func ByExpiryDate(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldExpiryDate, opts...).ToFunc()
 }
 
 // BySoldTime orders the results by the sold_time field.

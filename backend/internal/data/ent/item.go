@@ -60,6 +60,8 @@ type Item struct {
 	PurchaseFrom string `json:"purchase_from,omitempty"`
 	// PurchasePrice holds the value of the "purchase_price" field.
 	PurchasePrice float64 `json:"purchase_price,omitempty"`
+	// ExpiryDate holds the value of the "expiry_date" field.
+	ExpiryDate time.Time `json:"expiry_date,omitempty"`
 	// SoldTime holds the value of the "sold_time" field.
 	SoldTime time.Time `json:"sold_time,omitempty"`
 	// SoldTo holds the value of the "sold_to" field.
@@ -191,7 +193,7 @@ func (*Item) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullInt64)
 		case item.FieldName, item.FieldDescription, item.FieldImportRef, item.FieldNotes, item.FieldSerialNumber, item.FieldModelNumber, item.FieldManufacturer, item.FieldWarrantyDetails, item.FieldPurchaseFrom, item.FieldSoldTo, item.FieldSoldNotes:
 			values[i] = new(sql.NullString)
-		case item.FieldCreatedAt, item.FieldUpdatedAt, item.FieldWarrantyExpires, item.FieldPurchaseTime, item.FieldSoldTime:
+		case item.FieldCreatedAt, item.FieldUpdatedAt, item.FieldWarrantyExpires, item.FieldPurchaseTime, item.FieldExpiryDate, item.FieldSoldTime:
 			values[i] = new(sql.NullTime)
 		case item.FieldID:
 			values[i] = new(uuid.UUID)
@@ -341,6 +343,12 @@ func (_m *Item) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field purchase_price", values[i])
 			} else if value.Valid {
 				_m.PurchasePrice = value.Float64
+			}
+		case item.FieldExpiryDate:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field expiry_date", values[i])
+			} else if value.Valid {
+				_m.ExpiryDate = value.Time
 			}
 		case item.FieldSoldTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -522,6 +530,9 @@ func (_m *Item) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("purchase_price=")
 	builder.WriteString(fmt.Sprintf("%v", _m.PurchasePrice))
+	builder.WriteString(", ")
+	builder.WriteString("expiry_date=")
+	builder.WriteString(_m.ExpiryDate.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("sold_time=")
 	builder.WriteString(_m.SoldTime.Format(time.ANSIC))

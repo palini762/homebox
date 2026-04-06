@@ -197,6 +197,11 @@
       maxLength: 1000,
     },
     {
+      type: "date",
+      label: "items.expiry_date",
+      ref: "expiryDate",
+    },
+    {
       type: "text",
       label: "items.serial_number",
       ref: "serialNumber",

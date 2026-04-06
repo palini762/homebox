@@ -1,0 +1,2 @@
+-- +goose Up
+ALTER TABLE items ADD COLUMN expiry_date TIMESTAMP WITH TIME ZONE NULL;

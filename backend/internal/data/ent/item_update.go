@@ -374,6 +374,26 @@ func (_u *ItemUpdate) AddPurchasePrice(v float64) *ItemUpdate {
 	return _u
 }
 
+// SetExpiryDate sets the "expiry_date" field.
+func (_u *ItemUpdate) SetExpiryDate(v time.Time) *ItemUpdate {
+	_u.mutation.SetExpiryDate(v)
+	return _u
+}
+
+// SetNillableExpiryDate sets the "expiry_date" field if the given value is not nil.
+func (_u *ItemUpdate) SetNillableExpiryDate(v *time.Time) *ItemUpdate {
+	if v != nil {
+		_u.SetExpiryDate(*v)
+	}
+	return _u
+}
+
+// ClearExpiryDate clears the value of the "expiry_date" field.
+func (_u *ItemUpdate) ClearExpiryDate() *ItemUpdate {
+	_u.mutation.ClearExpiryDate()
+	return _u
+}
+
 // SetSoldTime sets the "sold_time" field.
 func (_u *ItemUpdate) SetSoldTime(v time.Time) *ItemUpdate {
 	_u.mutation.SetSoldTime(v)
@@ -903,6 +923,12 @@ func (_u *ItemUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	}
 	if value, ok := _u.mutation.AddedPurchasePrice(); ok {
 		_spec.AddField(item.FieldPurchasePrice, field.TypeFloat64, value)
+	}
+	if value, ok := _u.mutation.ExpiryDate(); ok {
+		_spec.SetField(item.FieldExpiryDate, field.TypeTime, value)
+	}
+	if _u.mutation.ExpiryDateCleared() {
+		_spec.ClearField(item.FieldExpiryDate, field.TypeTime)
 	}
 	if value, ok := _u.mutation.SoldTime(); ok {
 		_spec.SetField(item.FieldSoldTime, field.TypeTime, value)
@@ -1599,6 +1625,26 @@ func (_u *ItemUpdateOne) AddPurchasePrice(v float64) *ItemUpdateOne {
 	return _u
 }
 
+// SetExpiryDate sets the "expiry_date" field.
+func (_u *ItemUpdateOne) SetExpiryDate(v time.Time) *ItemUpdateOne {
+	_u.mutation.SetExpiryDate(v)
+	return _u
+}
+
+// SetNillableExpiryDate sets the "expiry_date" field if the given value is not nil.
+func (_u *ItemUpdateOne) SetNillableExpiryDate(v *time.Time) *ItemUpdateOne {
+	if v != nil {
+		_u.SetExpiryDate(*v)
+	}
+	return _u
+}
+
+// ClearExpiryDate clears the value of the "expiry_date" field.
+func (_u *ItemUpdateOne) ClearExpiryDate() *ItemUpdateOne {
+	_u.mutation.ClearExpiryDate()
+	return _u
+}
+
 // SetSoldTime sets the "sold_time" field.
 func (_u *ItemUpdateOne) SetSoldTime(v time.Time) *ItemUpdateOne {
 	_u.mutation.SetSoldTime(v)
@@ -2158,6 +2204,12 @@ func (_u *ItemUpdateOne) sqlSave(ctx context.Context) (_node *Item, err error) {
 	}
 	if value, ok := _u.mutation.AddedPurchasePrice(); ok {
 		_spec.AddField(item.FieldPurchasePrice, field.TypeFloat64, value)
+	}
+	if value, ok := _u.mutation.ExpiryDate(); ok {
+		_spec.SetField(item.FieldExpiryDate, field.TypeTime, value)
+	}
+	if _u.mutation.ExpiryDateCleared() {
+		_spec.ClearField(item.FieldExpiryDate, field.TypeTime)
 	}
 	if value, ok := _u.mutation.SoldTime(); ok {
 		_spec.SetField(item.FieldSoldTime, field.TypeTime, value)

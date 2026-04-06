@@ -156,6 +156,11 @@ func PurchasePrice(v float64) predicate.Item {
 	return predicate.Item(sql.FieldEQ(FieldPurchasePrice, v))
 }
 
+// ExpiryDate applies equality check predicate on the "expiry_date" field. It's identical to ExpiryDateEQ.
+func ExpiryDate(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldEQ(FieldExpiryDate, v))
+}
+
 // SoldTime applies equality check predicate on the "sold_time" field. It's identical to SoldTimeEQ.
 func SoldTime(v time.Time) predicate.Item {
 	return predicate.Item(sql.FieldEQ(FieldSoldTime, v))
@@ -1179,6 +1184,56 @@ func PurchasePriceLT(v float64) predicate.Item {
 // PurchasePriceLTE applies the LTE predicate on the "purchase_price" field.
 func PurchasePriceLTE(v float64) predicate.Item {
 	return predicate.Item(sql.FieldLTE(FieldPurchasePrice, v))
+}
+
+// ExpiryDateEQ applies the EQ predicate on the "expiry_date" field.
+func ExpiryDateEQ(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldEQ(FieldExpiryDate, v))
+}
+
+// ExpiryDateNEQ applies the NEQ predicate on the "expiry_date" field.
+func ExpiryDateNEQ(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldNEQ(FieldExpiryDate, v))
+}
+
+// ExpiryDateIn applies the In predicate on the "expiry_date" field.
+func ExpiryDateIn(vs ...time.Time) predicate.Item {
+	return predicate.Item(sql.FieldIn(FieldExpiryDate, vs...))
+}
+
+// ExpiryDateNotIn applies the NotIn predicate on the "expiry_date" field.
+func ExpiryDateNotIn(vs ...time.Time) predicate.Item {
+	return predicate.Item(sql.FieldNotIn(FieldExpiryDate, vs...))
+}
+
+// ExpiryDateGT applies the GT predicate on the "expiry_date" field.
+func ExpiryDateGT(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldGT(FieldExpiryDate, v))
+}
+
+// ExpiryDateGTE applies the GTE predicate on the "expiry_date" field.
+func ExpiryDateGTE(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldGTE(FieldExpiryDate, v))
+}
+
+// ExpiryDateLT applies the LT predicate on the "expiry_date" field.
+func ExpiryDateLT(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldLT(FieldExpiryDate, v))
+}
+
+// ExpiryDateLTE applies the LTE predicate on the "expiry_date" field.
+func ExpiryDateLTE(v time.Time) predicate.Item {
+	return predicate.Item(sql.FieldLTE(FieldExpiryDate, v))
+}
+
+// ExpiryDateIsNil applies the IsNil predicate on the "expiry_date" field.
+func ExpiryDateIsNil() predicate.Item {
+	return predicate.Item(sql.FieldIsNull(FieldExpiryDate))
+}
+
+// ExpiryDateNotNil applies the NotNil predicate on the "expiry_date" field.
+func ExpiryDateNotNil() predicate.Item {
+	return predicate.Item(sql.FieldNotNull(FieldExpiryDate))
 }
 
 // SoldTimeEQ applies the EQ predicate on the "sold_time" field.

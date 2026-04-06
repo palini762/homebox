@@ -246,11 +246,11 @@ func init() {
 	// item.DefaultPurchasePrice holds the default value on creation for the purchase_price field.
 	item.DefaultPurchasePrice = itemDescPurchasePrice.Default.(float64)
 	// itemDescSoldPrice is the schema descriptor for sold_price field.
-	itemDescSoldPrice := itemFields[18].Descriptor()
+	itemDescSoldPrice := itemFields[19].Descriptor()
 	// item.DefaultSoldPrice holds the default value on creation for the sold_price field.
 	item.DefaultSoldPrice = itemDescSoldPrice.Default.(float64)
 	// itemDescSoldNotes is the schema descriptor for sold_notes field.
-	itemDescSoldNotes := itemFields[19].Descriptor()
+	itemDescSoldNotes := itemFields[20].Descriptor()
 	// item.SoldNotesValidator is a validator for the "sold_notes" field. It is called by the builders before save.
 	item.SoldNotesValidator = itemDescSoldNotes.Validators[0].(func(string) error)
 	// itemDescID is the schema descriptor for id field.

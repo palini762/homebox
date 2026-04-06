@@ -631,6 +631,8 @@ export interface ItemAttachmentUpdate {
 export interface ItemCreate {
   /** @maxLength 1000 */
   description: string;
+  /** Expiry Date (MHD) */
+  expiryDate?: Date | string | null;
   /** Edges */
   locationId: string;
   /**
@@ -659,6 +661,8 @@ export interface ItemOut {
   attachments: ItemAttachment[];
   createdAt: Date | string;
   description: string;
+  /** Expiry Date (MHD) */
+  expiryDate: Date | string;
   fields: ItemField[];
   id: string;
   imageId?: string | null;
@@ -837,6 +841,8 @@ export interface ItemUpdate {
   assetId: string;
   /** @maxLength 1000 */
   description: string;
+  /** Expiry Date (MHD) */
+  expiryDate: Date | string;
   fields: ItemField[];
   id: string;
   insured: boolean;

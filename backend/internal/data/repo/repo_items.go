@@ -76,6 +76,9 @@ type (
 		Description string    `json:"description" validate:"max=1000"`
 		AssetID     AssetID   `json:"-"`
 
+		// Expiry Date (MHD)
+		ExpiryDate types.Date `json:"expiryDate"`
+
 		// Edges
 		LocationID uuid.UUID   `json:"locationId"`
 		TagIDs     []uuid.UUID `json:"tagIds"`
@@ -105,6 +108,9 @@ type (
 		LifetimeWarranty bool       `json:"lifetimeWarranty"`
 		WarrantyExpires  types.Date `json:"warrantyExpires"`
 		WarrantyDetails  string     `json:"warrantyDetails"`
+
+		// Expiry Date (MHD)
+		ExpiryDate types.Date `json:"expiryDate"`
 
 		// Purchase
 		PurchaseTime  types.Date `json:"purchaseTime"`
@@ -170,6 +176,9 @@ type (
 		LifetimeWarranty bool       `json:"lifetimeWarranty"`
 		WarrantyExpires  types.Date `json:"warrantyExpires"`
 		WarrantyDetails  string     `json:"warrantyDetails"`
+
+		// Expiry Date (MHD)
+		ExpiryDate types.Date `json:"expiryDate"`
 
 		// Purchase
 		PurchaseTime types.Date `json:"purchaseTime"`
@@ -283,6 +292,9 @@ func mapItemOut(item *ent.Item) ItemOut {
 		SerialNumber: item.SerialNumber,
 		ModelNumber:  item.ModelNumber,
 		Manufacturer: item.Manufacturer,
+
+		// Expiry Date (MHD)
+		ExpiryDate: types.DateFromTime(item.ExpiryDate),
 
 		// Purchase
 		PurchaseTime: types.DateFromTime(item.PurchaseTime),
@@ -644,7 +656,8 @@ func (e *ItemsRepository) Create(ctx context.Context, gid uuid.UUID, data ItemCr
 		SetDescription(data.Description).
 		SetGroupID(gid).
 		SetLocationID(data.LocationID).
-		SetAssetID(int(data.AssetID))
+		SetAssetID(int(data.AssetID)).
+		SetExpiryDate(data.ExpiryDate.Time())
 
 	if data.ParentID != uuid.Nil {
 		q.SetParentID(data.ParentID)
@@ -917,6 +930,7 @@ func (e *ItemsRepository) UpdateByGroup(ctx context.Context, gid uuid.UUID, data
 		SetModelNumber(data.ModelNumber).
 		SetManufacturer(data.Manufacturer).
 		SetArchived(data.Archived).
+		SetExpiryDate(data.ExpiryDate.Time()).
 		SetPurchaseTime(data.PurchaseTime.Time()).
 		SetPurchaseFrom(data.PurchaseFrom).
 		SetPurchasePrice(data.PurchasePrice).
